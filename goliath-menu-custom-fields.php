@@ -45,7 +45,7 @@ if (!class_exists('goliath_menu_custom_fields')) {
         {
             foreach($this->args as $location => $fields) {
                 foreach($fields as $field_name => $field_attr) {
-                    if (is_array($_REQUEST['menu-item_'.$field_name])) {
+                    if (isset($_REQUEST['menu-item_'.$field_name]) && is_array($_REQUEST['menu-item_'.$field_name])) {
                         $field_value = $_REQUEST['menu-item_'.$field_name][$menu_item_db_id];
                         update_post_meta($menu_item_db_id, '_menu_item_'.$field_name, $field_value);
                     }
@@ -58,7 +58,7 @@ if (!class_exists('goliath_menu_custom_fields')) {
             $menu_locations = get_nav_menu_locations();
 
             foreach($this->args as $location => $fields) {
-                if ($menu_locations[$location] == $menu_id) {
+                if (array_key_exists($location, $menu_locations) && $menu_locations[$location] == $menu_id) {
                     require_once('goliath-walker-nav-menu-edit.php');
 
                     return 'Goliath_Walker_Nav_Menu_Edit';
