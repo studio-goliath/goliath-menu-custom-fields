@@ -100,7 +100,7 @@ class Goliath_Walker_Nav_Menu_Edit extends Walker_Nav_Menu_Edit
                 </dt>
             </dl>
 
-            <div class="menu-item-settings" id="menu-item-settings-<?php echo $item_id; ?>">
+            <div class="menu-item-settings wp-clearfix" id="menu-item-settings-<?php echo $item_id; ?>">
                 <?php if( 'custom' == $item->type ) : ?>
                     <p class="field-url description description-wide">
                         <label for="edit-menu-item-url-<?php echo $item_id; ?>">
@@ -174,7 +174,7 @@ class Goliath_Walker_Nav_Menu_Edit extends Walker_Nav_Menu_Edit
                                 case 'textarea' :
                 ?>
                 <p class="field-custom description description-wide">
-                    <label for="edit-menu-item-subtitle-<?php echo $item_id; ?>">
+                    <label for="edit-menu-item-<?php echo $field_name ?>-<?php echo $item_id; ?>">
                         <?php echo $field_label; ?><br />
                         <textarea id="edit-menu-item-<?php echo $field_name ?>-<?php echo $item_id; ?>" class="widefat code edit-menu-item-custom" name="menu-item_<?php echo $field_name ?>[<?php echo $item_id; ?>]"><?php echo $item->$field_name; ?></textarea>
                     </label>
