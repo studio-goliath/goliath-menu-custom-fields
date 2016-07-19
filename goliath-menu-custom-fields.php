@@ -45,7 +45,7 @@ if (!class_exists('goliath_menu_custom_fields')) {
         {
             foreach($this->args as $location => $fields) {
                 foreach($fields as $field_name => $field_attr) {
-                    if (isset($_REQUEST['menu-item_'.$field_name]) && is_array($_REQUEST['menu-item_'.$field_name])) {
+                    if (isset($_REQUEST['menu-item_'.$field_name]) && is_array($_REQUEST['menu-item_'.$field_name]) && isset($_REQUEST['menu-item_'.$field_name][$menu_item_db_id])) {
                         $field_value = $_REQUEST['menu-item_'.$field_name][$menu_item_db_id];
                         update_post_meta($menu_item_db_id, '_menu_item_'.$field_name, $field_value);
                     }
