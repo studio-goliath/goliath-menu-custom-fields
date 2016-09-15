@@ -157,21 +157,22 @@ class Goliath_Walker_Nav_Menu_Edit extends Walker_Nav_Menu_Edit
 
                 $added_fields = array();
                 $goliath_mcf_args = $GLOBALS['GOLIATH_MENU_CUSTOM_FIELDS_ARGS'];
-                foreach($locations as $location) :
-                    foreach($goliath_mcf_args[$location] as $field_name => $field_attr) :
-                        if (!in_array($field_name, $added_fields)) :
-                            $field_type = 'input';
-                            if (array_key_exists('type', $field_attr)) {
-                                $field_type = $field_attr['type'];
-                            }
+                if (isset($locations) && is_array($locations)) :
+                    foreach($locations as $location) :
+                        foreach($goliath_mcf_args[$location] as $field_name => $field_attr) :
+                            if (!in_array($field_name, $added_fields)) :
+                                $field_type = 'input';
+                                if (array_key_exists('type', $field_attr)) {
+                                    $field_type = $field_attr['type'];
+                                }
 
-                            $field_label = $field_name;
-                            if (array_key_exists('label', $field_attr)) {
-                                $field_label = $field_attr['label'];
-                            }
+                                $field_label = $field_name;
+                                if (array_key_exists('label', $field_attr)) {
+                                    $field_label = $field_attr['label'];
+                                }
 
-                            switch($field_type) :
-                                case 'textarea' :
+                                switch($field_type) :
+                                    case 'textarea' :
                 ?>
                 <p class="field-custom description description-wide">
                     <label for="edit-menu-item-<?php echo $field_name ?>-<?php echo $item_id; ?>">
@@ -180,8 +181,8 @@ class Goliath_Walker_Nav_Menu_Edit extends Walker_Nav_Menu_Edit
                     </label>
                 </p>
                 <?php
-                                    break;
-                                default:
+                                        break;
+                                    default:
                 ?>
                 <p class="field-custom description description-wide">
                     <label for="edit-menu-item-subtitle-<?php echo $item_id; ?>">
@@ -190,13 +191,14 @@ class Goliath_Walker_Nav_Menu_Edit extends Walker_Nav_Menu_Edit
                     </label>
                 </p>
                 <?php
-                                break;
-                            endswitch;
+                                    break;
+                                endswitch;
 
-                            $added_fields[] = $field_name;
-                        endif;
+                                $added_fields[] = $field_name;
+                            endif;
+                        endforeach;
                     endforeach;
-                endforeach;
+                endif;
                 /* New fields insertion ends here */
                 ?>
                 <div class="menu-item-actions description-wide submitbox">
